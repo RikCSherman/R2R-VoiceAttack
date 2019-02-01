@@ -9,15 +9,13 @@ namespace Sextant.Tests.Builders
 {
     public class StarSystemBuilder
     {
-        public int Id { get; private set; }
         public string Name { get; private set; }
         public List<Celestial> Celestials { get; private set; }
 
-        public static implicit operator StarSystem(StarSystemBuilder b) => new StarSystem(b.Id, b.Name, b.Celestials);
+        public static implicit operator StarSystem(StarSystemBuilder b) => new StarSystem(b.Name, b.Celestials);
 
         public StarSystemBuilder()
         {
-            Id         = 1;
             Name       = Guid.NewGuid().ToString();
             Celestials = new List<Celestial>();
         }

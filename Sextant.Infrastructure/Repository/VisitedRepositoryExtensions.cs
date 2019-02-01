@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Sextant.Infrastructure.Repository
 {
-    internal static class NavigationRepositoryExtensions
+    internal static class VisitedRepositoryExtensions
     {
         internal static List<StarSystemDocument> ToDocument(this IEnumerable<StarSystem> starSystems)
         {

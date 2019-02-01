@@ -17,7 +17,7 @@ namespace Sextant.Host
 {
     internal class Bootstrapper
     {
-        private const string ExpeditionFileName   = "expedition.db";
+        private const string ExpeditionFileName   = "visited.db";
         private const string PlayerStatusFileName = "player_status.db";
 
         internal void Bootstrap(string basePath, Container container)
@@ -33,7 +33,7 @@ namespace Sextant.Host
             container.Register<ICommunicator, VoiceCommunicator>(Lifestyle.Singleton);
 
             container.Register<IUserDataService, ClipboardDataService>(Lifestyle.Singleton);
-            container.Register<INavigationRepository, NavigationRepository>(Lifestyle.Singleton);
+            container.Register<IVisitedRepository, VisitedRepository>(Lifestyle.Singleton);
             container.Register<IPlayerStatus, PlayerStatusRepository>(Lifestyle.Singleton);
 
             RegisterCommands(container);

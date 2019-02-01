@@ -47,7 +47,7 @@ namespace Sextant.Tests.Commands
             Celestial celestial      = Build.A.Celestial.ThatHasBeenScanned();
             List<StarSystem> systems = Build.A.StarSystem.WithCelestial(celestial).InAList();
 
-            _playerStatus.SetLocation(systems.Single().Name);
+            _playerStatus.Location = systems.Single().Name;
 
             _navigator.PlanExpedition(systems);
 
@@ -61,7 +61,7 @@ namespace Sextant.Tests.Commands
             Celestial celestial      = Build.A.Celestial.ThatHasNotBeenScanned();
             List<StarSystem> systems = Build.A.StarSystem.WithCelestial(celestial).InAList();
 
-            _playerStatus.SetLocation(systems.Single().Name);
+            _playerStatus.Location = systems.Single().Name;
 
             _navigator.PlanExpedition(systems);
 

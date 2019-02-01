@@ -1,23 +1,25 @@
 ﻿// Copyright (c) Stickymaddness All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
+using Sextant.Domain;
 
 namespace Sextant.Infrastructure.Repository
 {
-    public class PlayerStatus
+    public class PlayerStatus : IPlayerStatus
     {
-        public int Id { get; set; }
-        public string Location { get; set; }
-        public double FuelCapacity { get; set; }
-        public DateTimeOffset ExpeditionStart { get; set; }
+        private int playerStatusId;
 
-        public PlayerStatus()
-        { }
-
-        public PlayerStatus(int id)
+        public PlayerStatus(int playerStatusId)
         {
-            Id = id;
+            this.playerStatusId = playerStatusId;
         }
+
+        public PlayerStatus() : this(1) { }
+
+        public string Location { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
+        public int Id { get; internal set; }
     }
 }

@@ -21,13 +21,10 @@ namespace Sextant.Tests.Commands
             GameLoadPhrases phrases           = TestPhraseBuilder.Build<GameLoadPhrases>();
             GameLoadCommand sut               = new GameLoadCommand(communicator, repository, phrases);
 
-            double fuelCapacity = 100;
-
-            TestEvent loadEvent = Build.An.Event.WithEvent("LoadGame").WithPayload("FuelCapacity", fuelCapacity);
+            TestEvent loadEvent = Build.An.Event.WithEvent("LoadGame");
 
             sut.Handle(loadEvent);
 
-            repository.FuelCapacity.Should().Be(fuelCapacity);
             communicator.MessagesCommunicated.Single().Should().Be(phrases.Generic.Single());
         }
     }

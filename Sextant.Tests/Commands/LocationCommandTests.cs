@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using Sextant.Domain.Commands;
 using Sextant.Infrastructure.Repository;
 using Sextant.Tests;
@@ -20,11 +21,17 @@ namespace Sextant.Tests.Commands
             PlayerStatusRepository repository = CreatePlayerStatusRepository();
             LocationCommand sut               = CreateSut(repository);
 
-            repository.SetLocation(Build.A.StarSystem.Name);
+            repository.Location = Build.A.StarSystem.Name;
 
             string expectedSystem = Build.A.StarSystem.Name;
 
-            TestEvent loadEvent = Build.An.Event.WithEvent("LoadGame").WithPayload("StarSystem", expectedSystem);
+            JArray position = new JArray();
+            position.Add(22.844);
+            position.Add(106.125);
+            position.Add(199.281);
+            TestEvent loadEvent = Build.An.Event.WithEvent("LoadGame")
+                .WithPayload("StarSystem", expectedSystem)
+                .WithPayload("StarPos", position);
 
             sut.Handle(loadEvent);
 

@@ -40,6 +40,9 @@
     <Reference Include="FluentAssertions.Core, Version=4.19.4.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentAssertions.4.19.4\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.2.6.0\lib\net46\Serilog.dll</HintPath>
     </Reference>
@@ -79,11 +82,9 @@
     <Compile Include="ClipboardDataServiceTests.cs" />
     <Compile Include="CommandExecutorTests.cs" />
     <Compile Include="CommandRegistryTests.cs" />
-    <Compile Include="Commands\CancelExpeditionCommandTests.cs" />
     <Compile Include="Commands\CelestialScanCommandTests.cs" />
     <Compile Include="Commands\CommandTestBase.cs" />
     <Compile Include="Commands\DockSRVCommandTests.cs" />
-    <Compile Include="Commands\ExtendExpeditionCommandTests.cs" />
     <Compile Include="Commands\FindNextSystemCommandTests.cs" />
     <Compile Include="Commands\GameLoadCommandTests.cs" />
     <Compile Include="Commands\GetNextSystemCommandTests.cs" />
@@ -91,8 +92,6 @@
     <Compile Include="Commands\JumpCompleteTests.cs" />
     <Compile Include="Commands\LocationCommandTests.cs" />
     <Compile Include="Commands\NextScanCommandTests.cs" />
-    <Compile Include="Commands\PlanExpeditionCommandTests.cs" />
-    <Compile Include="Commands\ProgressCommandTests.cs" />
     <Compile Include="Commands\RescanSystemCommandTests.cs" />
     <Compile Include="Commands\ScansRemainingCommandTests.cs" />
     <Compile Include="Commands\SkipSystemCommandTests.cs" />

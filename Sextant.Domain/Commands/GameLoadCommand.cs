@@ -27,11 +27,7 @@ namespace Sextant.Domain.Commands
         public void Handle(IEvent @event)
         {
             _communicator.Communicate(_genericPhrases.GetRandomPhrase());
-
-            var payload         = @event.Payload;
-            double fuelCapacity = (double)payload["FuelCapacity"];
-
-            _playerStatus.SetFuelCapacity(fuelCapacity);
+           
         }
     }
 }

@@ -8,20 +8,16 @@ namespace Sextant.Tests.Builders
 {
     public class CelestialBuilder
     {
-        private int Id;
         private bool Scanned;
         private string Name;
-        private string System;
-        private string Classification;
+        private string Type;
 
-        public static implicit operator Celestial(CelestialBuilder b) => new Celestial(b.Name, b.Classification, b.System, b.Scanned, b.Id);
+        public static implicit operator Celestial(CelestialBuilder b) => new Celestial(b.Name, b.Type, b.Scanned);
 
         public CelestialBuilder()
         {
-            Id             = 1;
             Name           = Guid.NewGuid().ToString();
-            System         = "Test";
-            Classification = Guid.NewGuid().ToString();
+            Type = Guid.NewGuid().ToString();
         }
 
         public CelestialBuilder ThatHasBeenScanned()

@@ -23,7 +23,6 @@ namespace Sextant.Domain
 
         List<Celestial> GetRemainingCelestials(string systemName);
         List<Celestial> GetAllRemainingCelestials();
-        List<StarSystem> GetAllExpeditionSystems();
 
         bool CancelExpedition();
         bool ScanCelestial(string celestial);

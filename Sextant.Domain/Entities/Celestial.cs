@@ -5,23 +5,20 @@ namespace Sextant.Domain.Entities
 {
     public class Celestial
     {
-        public int Id { get; set; }
-
         public bool Scanned { get; }
 
-        public string Name { get; }
-        public string System { get; }
-        public string Clasification { get; }
-        public bool Landable { get; }
+        public string Name { get; set; }
+        public int Dls { get; set; }
+        public string Type { get; set; }
 
-        public string ShortName => Name.Replace(System, string.Empty);
+        public string ShortName => Name.Replace("System", string.Empty);
 
-        public Celestial(string name, string clasification, string system, bool scanned = false, int id = 0)
+        public Celestial() : this(null, null) { }
+
+        public Celestial(string name, string type, bool scanned = false)
         {
-            Id            = id;
             Name          = name;
-            System        = system;
-            Clasification = clasification;
+            Type          = type;
             Scanned       = scanned;
         }
     }

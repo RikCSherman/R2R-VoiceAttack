@@ -9,9 +9,11 @@ namespace Sextant.Infrastructure.Repository
 {
     public class StarSystemDocument
     {
-        public int Id { get; set; }
         public bool Scanned { get; set; }
         public string Name { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
 
         public List<CelestialDocument> Celestials { get; set; }
 
@@ -20,15 +22,21 @@ namespace Sextant.Infrastructure.Repository
 
         public StarSystemDocument(StarSystem system)
         {
-            Id         = system.Id;
             Name       = system.Name;
             Scanned    = system.Scanned;
+            X = system.X;
+            Y = system.Y;
+            Z = system.Z;
             Celestials = system.Celestials.Select(c => new CelestialDocument(c)).ToList();
         }
 
         public StarSystem ToEntity()
         {
-            return new StarSystem(Id, Name, Celestials.Select(c => c.ToEntity()).ToList());
+            StarSystem starSystem = new StarSystem(Name, Celestials.Select(c => c.ToEntity()).ToList());
+            starSystem.X = X;
+            starSystem.Y = Y;
+            starSystem.Z = Z;
+            return starSystem;
         }
     }
 }

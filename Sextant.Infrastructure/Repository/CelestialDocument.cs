@@ -7,10 +7,9 @@ namespace Sextant.Infrastructure.Repository
 {
     public class CelestialDocument
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string System { get; set; }
-        public string Clasification { get; set; }
+        public string Type { get; set; }
         public bool Scanned { get; set; }
         public bool Landable { get; set; }
 
@@ -19,17 +18,14 @@ namespace Sextant.Infrastructure.Repository
 
         public CelestialDocument(Celestial celetial)
         {
-            Id            = celetial.Id;
             Name          = celetial.Name;
-            System        = celetial.System;
-            Clasification = celetial.Clasification;
+            Type          = celetial.Type;
             Scanned       = celetial.Scanned;
-            Landable      = celetial.Landable;
         }
 
         public Celestial ToEntity()
         {
-            return new Celestial(Name, Clasification, System, Scanned, Id);
+            return new Celestial(Name, Type, Scanned);
         }
     }
 }

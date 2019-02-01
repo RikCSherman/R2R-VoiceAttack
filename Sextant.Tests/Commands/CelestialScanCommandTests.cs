@@ -36,7 +36,7 @@ namespace Sextant.Tests.Commands
             List<StarSystem> starSystems             = Build.Many.StarSystems(currentSystem, nextSystem);
 
             navigator.PlanExpedition(starSystems);
-            playerStatus.SetLocation(currentSystem.Name);
+            playerStatus.Location = currentSystem.Name;
 
             TestEvent testEvent = Build.An.Event.WithEvent(sut.SupportedCommand)
                                                 .WithPayload(_payloadKey, celestial.Name);
@@ -63,7 +63,7 @@ namespace Sextant.Tests.Commands
             List<StarSystem> starSystems             = Build.Many.StarSystems(currentSystem);
 
             navigator.PlanExpedition(starSystems);
-            playerStatus.SetLocation(currentSystem.Name);
+            playerStatus.Location = currentSystem.Name;
 
             TestEvent testEvent = Build.An.Event.WithEvent(sut.SupportedCommand)
                                                 .WithPayload(_payloadKey, celestial.Name);
@@ -87,7 +87,7 @@ namespace Sextant.Tests.Commands
             List<StarSystem> starSystems             = Build.Many.StarSystems(currentSystem);
 
             navigator.PlanExpedition(starSystems);
-            playerStatus.SetLocation(currentSystem.Name);
+            playerStatus.Location = currentSystem.Name;
 
             TestEvent testEvent = Build.An.Event.WithEvent(sut.SupportedCommand)
                                                 .WithPayload(_payloadKey, celestial.Name);
@@ -114,7 +114,7 @@ namespace Sextant.Tests.Commands
             List<StarSystem> starSystems             = Build.Many.StarSystems(firstSystem, secondSystem, thirdSystem);
 
             navigator.PlanExpedition(starSystems);
-            playerStatus.SetLocation(secondSystem.Name);
+            playerStatus.Location = secondSystem.Name;
 
             TestEvent testEvent = Build.An.Event.WithEvent(sut.SupportedCommand)
                                                 .WithPayload(_payloadKey, celestial.Name);

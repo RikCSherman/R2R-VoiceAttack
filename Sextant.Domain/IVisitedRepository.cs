@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Sextant.Domain
 {
-    public interface INavigationRepository
+    public interface IVisitedRepository
     {
         bool Clear();
         bool IsEmpty();
@@ -21,6 +21,5 @@ namespace Sextant.Domain
 
         StarSystem GetFirstUnscannedSystem();
         List<StarSystem> GetUnscannedSystems();
-        List<StarSystem> GetAllExpeditionStarSystems();
     }
 }

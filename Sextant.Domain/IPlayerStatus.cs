@@ -7,11 +7,9 @@ namespace Sextant.Domain
 {
     public interface IPlayerStatus
     {
-        string Location { get; }
-        double FuelCapacity { get; }
-        TimeSpan ExpeditionLength { get; }
-        bool SetLocation(string location);
-        bool SetFuelCapacity(double capacity);
-        bool SetExpeditionStart(DateTimeOffset dateTimeStart);
+        string Location { get; set; }
+        double X { get; set; }
+        double Y { get; set; }
+        double Z { get; set; }
     }
 }

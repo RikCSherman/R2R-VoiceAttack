@@ -30,17 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CancelExpeditionCommand.cs" />
     <Compile Include="Commands\CelestialScanCommand.cs" />
     <Compile Include="Commands\ClearComsCommand.cs" />
     <Compile Include="Commands\CommandExecutor.cs" />
     <Compile Include="Commands\CommandRegistry.cs" />
     <Compile Include="Commands\DockSRVCommand.cs" />
-    <Compile Include="Commands\ExtendExpeditionCommand.cs" />
     <Compile Include="Commands\FindNextSystemCommand.cs" />
     <Compile Include="Commands\GameLoadCommand.cs" />
     <Compile Include="Commands\GetNextSystemCommand.cs" />
@@ -54,8 +55,6 @@
     <Compile Include="Commands\LaunchSRVCommand.cs" />
     <Compile Include="Commands\LocationCommand.cs" />
     <Compile Include="Commands\NextScanCommand.cs" />
-    <Compile Include="Commands\PlanExpeditionCommand.cs" />
-    <Compile Include="Commands\ProgressCommand.cs" />
     <Compile Include="Commands\RescanSystemCommand.cs" />
     <Compile Include="Commands\ResponseCommandBase.cs" />
     <Compile Include="Commands\ScansRemainingCommand.cs" />
@@ -67,7 +66,7 @@
     <Compile Include="IDataStore.cs" />
     <Compile Include="IGalaxyMap.cs" />
     <Compile Include="ILogger.cs" />
-    <Compile Include="INavigationRepository.cs" />
+    <Compile Include="IVisitedRepository.cs" />
     <Compile Include="INavigator.cs" />
     <Compile Include="IPlayerStatus.cs" />
     <Compile Include="IUserDataService.cs" />
@@ -91,6 +90,21 @@
     <Compile Include="Phrases\SkipSystemPhrases.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\r2rsystems.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

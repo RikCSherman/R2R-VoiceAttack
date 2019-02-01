@@ -4,16 +4,35 @@
 using System.Linq;
 using System.Collections.Generic;
 using Sextant.Domain.Entities;
+using System.IO;
+using Newtonsoft.Json;
+using System.Reflection;
 
 namespace Sextant.Domain
 {
     public class Navigator : INavigator
     {
-        private readonly INavigationRepository _navigationRepository;
+        private readonly IVisitedRepository _navigationRepository;
+        private List<StarSystem> _r2rSystems;
+        private IPlayerStatus _playerStatus;
 
-        public Navigator(INavigationRepository navigationRepository)
+        public Navigator(IVisitedRepository navigationRepository, IPlayerStatus playerStatus)
         {
             _navigationRepository = navigationRepository;
+            _playerStatus = playerStatus;
+            LoadR2RFromResource();
+        }
+
+        public void LoadR2RFromResource()
+        {
+            using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Sextant.Domain.Resources.r2rsystems.json"))
+            {
+                using (StreamReader file = new StreamReader(resourceStream))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    _r2rSystems = (List<StarSystem>)serializer.Deserialize(file, typeof(List<StarSystem>));
+                }
+            }
         }
 
         public bool ExpeditionComplete => _navigationRepository.GetSystems().All(s => s.Scanned);
@@ -39,12 +58,21 @@ namespace Sextant.Domain
 
         public StarSystem GetNextSystem()
         {
-            return _navigationRepository.GetFirstUnscannedSystem();
+            double distance = double.MaxValue;
+            StarSystem system = null;
+            foreach(StarSystem sys in _r2rSystems)
+            {
+                if (sys.distance(_playerStatus) < distance)
+                {
+                    system = sys;
+                }
+            }
+            return system;
         }
 
         public Celestial GetNextCelestial()
         {
-            return GetNextSystem()?.Celestials.FirstOrDefault(c => c.Scanned == false);
+            return null; // GetNextSystem()?.Celestials.FirstOrDefault(c => c.Scanned == false);
         }
 
         public bool ScanCelestial(string celestial)
@@ -85,11 +113,6 @@ namespace Sextant.Domain
         public StarSystem GetSystem(string systemName)
         {
             return _navigationRepository.GetSystem(systemName);
-        }
-
-        public List<StarSystem> GetAllExpeditionSystems()
-        {
-            return _navigationRepository.GetAllExpeditionStarSystems();
         }
 
         public List<Celestial> GetRemainingCelestials(string systemName)

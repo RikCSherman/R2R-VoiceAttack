@@ -15,9 +15,57 @@ namespace Sextant.Infrastructure.Repository
         private PlayerStatus _playerStatus;
         private readonly IDataStore<PlayerStatus> _dataStore;
 
-        public string Location           => _playerStatus.Location;
-        public double FuelCapacity       => _playerStatus.FuelCapacity;
-        public TimeSpan ExpeditionLength => DateTimeOffset.Now - _playerStatus.ExpeditionStart;
+        public string Location
+        {
+            get { return _playerStatus.Location; }
+            set
+            {
+                if (string.Compare(_playerStatus.Location, value, true) != 0)
+                {
+                    _playerStatus.Location = value;
+                    Store();
+                }
+            }
+        }
+
+        public double X
+        {
+            get { return _playerStatus.X; }
+            set
+            {
+                if (value != _playerStatus.X)
+                {
+                    _playerStatus.X = value;
+                    Store();
+                }
+            }
+        }
+
+        public double Y
+        {
+            get { return _playerStatus.Y; }
+            set
+            {
+                if (value != _playerStatus.Y)
+                {
+                    _playerStatus.Y = value;
+                    Store();
+                }
+            }
+        }
+
+        public double Z
+        {
+            get { return _playerStatus.Z; }
+            set
+            {
+                if (value != _playerStatus.Z)
+                {
+                    _playerStatus.Z = value;
+                    Store();
+                }
+            }
+        }
 
         public void Dispose() => _dataStore.Dispose();
 
@@ -38,30 +86,6 @@ namespace Sextant.Infrastructure.Repository
         {
             lock(sync)
                 return _dataStore.Update(_playerStatus);
-        }
-
-        public bool SetExpeditionStart(DateTimeOffset start)
-        {
-            _playerStatus.ExpeditionStart = start;
-            return Store();
-        }
-
-        public bool SetFuelCapacity(double capacity)
-        {
-            if (_playerStatus.FuelCapacity == capacity)
-                return true;
-
-            _playerStatus.FuelCapacity = capacity;
-            return Store();
-        }
-
-        public bool SetLocation(string location)
-        {
-            if (_playerStatus.Location == location)
-                return true;
-
-            _playerStatus.Location = location;
-            return Store();
         }
     }
 }

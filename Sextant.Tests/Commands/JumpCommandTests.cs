@@ -61,8 +61,8 @@ namespace Sextant.Tests.Commands
         [Fact]
         public void JumpCommand_With_System_Not_In_Expedition_Skips_System_And_Does_Not_Communicate()
         {
-            var preferences = new Preferences() { CommunicateSkippableSystems = false };
-            var sut = new JumpCommand(_communicator, _navigator, _phrases, preferences);
+            var preferences     = new Preferences() { CommunicateSkippableSystems = false };
+            var sut             = new JumpCommand(_communicator, _navigator, _phrases, preferences);
             TestEvent testEvent = Build.An.Event.WithEvent(sut.SupportedCommand).WithPayload("StarSystem", "Test");
 
             sut.Handle(testEvent);
@@ -112,7 +112,7 @@ namespace Sextant.Tests.Commands
         [Fact]
         public void JumpCommand_With_Unscanned_System_In_Expedition_Communicates()
         {
-            var sut = new JumpCommand(_communicator, _navigator, _phrases, new Preferences());
+            var sut             = new JumpCommand(_communicator, _navigator, _phrases, new Preferences());
 
             TestEvent testEvent = Build.An.Event.WithEvent(sut.SupportedCommand).WithPayload("StarSystem", _starSystems.First().Name);
 

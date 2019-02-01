@@ -9,11 +9,12 @@ namespace Sextant.Tests.Commands
 {
     public class CommandTestBase
     {
+        PlayerStatus playerStatus = new PlayerStatus();
         protected T CreatePhrases<T>() where T : class, new()                         => TestPhraseBuilder.Build<T>();
         protected TestCommunicator CreateCommunicator()                               => new TestCommunicator();
         protected PlayerStatusRepository CreatePlayerStatusRepository()               => new PlayerStatusRepository(new MemoryDataStore<PlayerStatus>());
         protected IDataStore<StarSystemDocument> CreateDataStore()                    => new MemoryDataStore<StarSystemDocument>();
-        protected Navigator CreateNavigator()                                         => new Navigator(new NavigationRepository(CreateDataStore()));
-        protected Navigator CreateNavigator(IDataStore<StarSystemDocument> dataStore) => new Navigator(new NavigationRepository(dataStore));
+        protected Navigator CreateNavigator()                                         => new Navigator(new VisitedRepository(CreateDataStore()), playerStatus);
+        protected Navigator CreateNavigator(IDataStore<StarSystemDocument> dataStore) => new Navigator(new VisitedRepository(dataStore), playerStatus);
     }
 }

@@ -84,7 +84,7 @@ namespace Sextant.Domain.Commands
 
             var celestialsByCategory = system.Celestials
                                              .Where(c => !c.Scanned)
-                                             .GroupBy(c => c.Type)
+                                             .GroupBy(c => c.Clasification)
                                              .ToDictionary(grp => grp.Key, grp => grp.Count());
 
             int counter = 0;
