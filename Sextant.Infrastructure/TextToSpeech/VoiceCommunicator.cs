@@ -3,13 +3,13 @@
 
 using Sextant.Domain;
 using Sextant.Infrastructure.Settings;
-using System.Speech.Synthesis;
+//using System.Speech.Synthesis;
 
 namespace Sextant.Infrastructure.TextToSpeech
 {
     public class VoiceCommunicator : ICommunicator
     {
-        private SpeechSynthesizer _speechSynth;
+        //private SpeechSynthesizer _speechSynth;
         private readonly string _voice;
 
         public VoiceCommunicator(VoiceCommunicatorSettings settings)
@@ -19,20 +19,20 @@ namespace Sextant.Infrastructure.TextToSpeech
 
         public void Initialize()
         {
-            _speechSynth = new SpeechSynthesizer();
+            //_speechSynth = new SpeechSynthesizer();
 
-            _speechSynth.SelectVoice(_voice);
-            _speechSynth.SetOutputToDefaultAudioDevice();
+            //_speechSynth.SelectVoice(_voice);
+            //_speechSynth.SetOutputToDefaultAudioDevice();
         }
 
         public void Communicate(string message)
         {
-            _speechSynth.SpeakAsync(message);
+            //_speechSynth.SpeakAsync(message);
         }
 
         public void StopComminicating()
         {
-            _speechSynth.SpeakAsyncCancelAll();
+            //_speechSynth.SpeakAsyncCancelAll();
         }
     }
 }
