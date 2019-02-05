@@ -32,7 +32,6 @@ namespace Sextant.Host
             container.Register<INavigator, Navigator>(Lifestyle.Singleton);
             container.Register<ICommunicator, VoiceCommunicator>(Lifestyle.Singleton);
 
-            container.Register<IUserDataService, ClipboardDataService>(Lifestyle.Singleton);
             container.Register<IVisitedRepository, VisitedRepository>(Lifestyle.Singleton);
             container.Register<IPlayerStatus, PlayerStatusRepository>(Lifestyle.Singleton);
 

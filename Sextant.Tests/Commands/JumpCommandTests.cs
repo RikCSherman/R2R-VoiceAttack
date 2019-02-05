@@ -20,7 +20,6 @@ namespace Sextant.Tests.Commands
         private readonly TestCommunicator _communicator;
         private readonly List<StarSystem> _starSystems;
 
-        private readonly TestUserDataService _userDataService;
         private readonly JumpPhrases _phrases = TestPhraseBuilder.Build<JumpPhrases>();
 
         public JumpCommandTests()
@@ -28,7 +27,6 @@ namespace Sextant.Tests.Commands
             Celestial celestial  = Build.A.Celestial.ThatHasNotBeenScanned();
             Celestial celestial2 = Build.A.Celestial.ThatHasNotBeenScanned();
             _starSystems         = Build.A.StarSystem.WithCelestials(celestial, celestial, celestial2).InAList();
-            _userDataService     = new TestUserDataService(_starSystems);
             _navigator           = CreateNavigator(new MemoryDataStore<StarSystemDocument>());
             _communicator        = CreateCommunicator();
         }

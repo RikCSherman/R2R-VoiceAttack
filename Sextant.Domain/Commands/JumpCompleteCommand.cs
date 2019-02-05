@@ -21,7 +21,6 @@ namespace Sextant.Domain.Commands
         public void Handle(IEvent @event)
         {
             string location  = @event.Payload["StarSystem"].ToString();
-            double fuelLevel = (double)@event.Payload["FuelLevel"];
             JArray position = (JArray)@event.Payload["StarPos"];
             double x = position[0].ToObject<double>();
             double y = position[1].ToObject<double>();

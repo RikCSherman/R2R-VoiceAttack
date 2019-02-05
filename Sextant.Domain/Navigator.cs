@@ -40,7 +40,7 @@ namespace Sextant.Domain
 
         public bool CancelExpedition() => _navigationRepository.Clear();
 
-        public bool PlanExpedition(IEnumerable<StarSystem> systems)
+        public bool PlanExpedition(IEnumerable<StarSystem> systems) //TODO remove
         {
             if (ExpeditionStarted)
                 return false;
@@ -48,7 +48,7 @@ namespace Sextant.Domain
             return ExtendExpedition(systems);
         }
 
-        public bool ExtendExpedition(IEnumerable<StarSystem> systems)
+        public bool ExtendExpedition(IEnumerable<StarSystem> systems) //TODO remove
         {
             if (systems == null || !systems.Any())
                 return false;
